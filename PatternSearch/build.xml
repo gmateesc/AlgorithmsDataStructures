@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Optravis" default="main" basedir=".">
+
+<!-- 
+   the above attr name="Optravis" implies
+
+    ${ant.project.name} => Optravis
+-->
+
+<!-- 
+  See
+
+    https://ant.apache.org/manual/tutorial-HelloWorldWithAnt.html
+    https://ant.apache.org/manual/using.html 
+-->
+
+<!-- 
+
+  
+Properties can be defined here or in build.properties,
+in which case, here I need to define this property:
+
+ <property file="build.properties"/>
+
+-->
+
+
+<property name="build.compiler" value="modern"/>
+
+<property name="package.name"   value="optravis.patternsearch"/>
+<property name="src.dir"        value="src"/>
+<property name="build.dir"      value="./"/>
+<property name="classes.dir"    value="${build.dir}/classes"/>
+<property name="search.class"   value="PatternSearchMapServiceJavaDB"/>
+<property name="main.class"     value="PatternSearch"/>
+
+<!-- Set to true or false for verbose or quiet compile task -->
+<property name="TALK" value="false" />
+
+
+<target name="clean">
+    <delete dir="${classes.dir}"/>
+    <delete dir="derbyDB"/>
+    <delete file="derby.log"/>
+</target>
+
+
+<target name="compile">
+    <mkdir dir="${classes.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${classes.dir}" includeantruntime="false"  verbose="${TALK}"/>
+</target>
+
+
+
+<target name="main" depends="compile">
+
+   <!-- See https://ant.apache.org/manual/Tasks/java.html -->
+
+    <java classname="${package.name}/${main.class}" fork="true">
+        <classpath>
+           <pathelement path="${classes.dir}"/>
+           <pathelement location="lib/derby-10.11.1.1.jar"/>
+           <pathelement path="."/> 
+           <!-- <pathelement path="${java.class.path}"/> -->
+        </classpath>
+     </java>
+
+</target>
+
+
+<target name="engine" depends="compile">
+
+    <java classname="${package.name}/service/${search.class}" fork="true">
+        <classpath>
+           <pathelement path="${classes.dir}"/>
+           <pathelement location="lib/derby-10.11.1.1.jar"/>
+           <pathelement path="."/> 
+           <!-- <pathelement path="${java.class.path}"/> -->
+        </classpath>
+     </java>
+
+</target>
+
+
+<!--
+<target name="all" depends="clean,run"/>
+-->
+
+
+<target name="doc"> 
+   <echo>Project targets:</echo>
+   <echo>  compile</echo>
+   <echo>  main     run the PatternSearch application </echo>
+   <echo>  engine   run the PatternSearchMapEntries engine </echo>
+   <echo>  clean</echo>
+</target>
+
+
+<target name="clean-build" depends="clean"/>
+
+
+</project>
