@@ -26,3 +26,4 @@ The code provides the following functionality:
   out the time-weighted average of the highest price.
 
 
+Additional information is in the [README.txt](https://github.com/gmateesc/AlgorithmsDataStructures/blob/master/MarketDataAnalysis/README.txt) file.
