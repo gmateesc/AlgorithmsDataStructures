@@ -43,8 +43,7 @@ an in-memory table in which I loaded the data items.
 
 The solution uses two main software design techniques:
 
-* the dependency injection design pattern, 
-see ![this page](https://github.com/gmateesc/maven-projects/tree/master/DesignPatterns/src/optravis/messaging/depinjectpattern), in order to allow supporting different implementations of the pattern seach service;
+* the dependency injection design pattern, see [this page](https://github.com/gmateesc/DesignPatterns/tree/master/Factory_DependencyInjection#p2), in order to allow supporting different implementations of the pattern seach service;
 
 * Java generics: in order to support using the code fo searching other collections of Java objects.
 
@@ -52,15 +51,15 @@ see ![this page](https://github.com/gmateesc/maven-projects/tree/master/DesignPa
 <a name="p21" id="p21"></a>
 ### The service interface and its implementation 
 
-I defined a service ![interface](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/optravis/patternsearch/service/PatternSearchMapService.java): 
+I defined a service [interface](https://github.com/gmateesc/AlgorithmsDataStructures/blob/master/PatternSearch/src/gabriel/patternsearch/service/PatternSearchMapService.java): 
 ```
-optravis.patternsearch.service.PatternSearchMapService<K,V>
+gabriel.patternsearch.service.PatternSearchMapService<K,V>
 ``` 
 
 that specfies the service that peforms the search for the search pattern in the Map entries:  
 
 ```
-package optravis.patternsearch.service;
+package gabriel.patternsearch.service;
 
 import java.util.Collection;
 import java.util.ArrayList;
@@ -74,22 +73,21 @@ public interface PatternSearchMapService<K extends Comparable<? super K>, V>
 ```
 
 
-
-Then I created an ![implementation](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/optravis/patternsearch/service/PatternSearchMapServiceJavaDB.java) of the service PatternSearchMapService using the class:
+Then I created an [implementation](https://github.com/gmateesc/AlgorithmsDataStructures/blob/master/PatternSearch/src/gabriel/patternsearch/service/PatternSearchMapServiceJavaDB.java) of the service PatternSearchMapService using the class:
 
 ```
-optravis.patternsearch.service.PatternSearchMapServiceJavaDB<K.V>
+gabriel.patternsearch.service.PatternSearchMapServiceJavaDB<K.V>
 ``` 
 This class implements the searchForPattern() method by loading the Map entries into a relational 
 table of an embeeded Derby Database and using JDBC to peform pattern search against the table:
 
 ```
-package optravis.patternsearch.service;
+package gabriel.patternsearch.service;
 
 import java.util.*;
 import java.sql.*;
 
-import optravis.patternsearch.dao.DataItem;
+import gabriel.patternsearch.dao.DataItem;
 
 
 public class 
@@ -126,7 +124,7 @@ I implemented dependency injection pattern using:
 #### The client class
 
 ```
-optravis.patternsearch.client.PatternSearchMapClient<K, V>
+gabriel.patternsearch.client.PatternSearchMapClient<K, V>
 ```
 is used by applications to access an implementation of the PatternSearchMapService interface. 
 
@@ -135,10 +133,10 @@ _searchForPattern()_ on a client class object. even if the service implementatio
 changes or a new service implementation is added:
 
 ```
-package optravis.patternsearch.client;
+package gabriel.patternsearch.client;
 
 import java.util.Collection;
-import optravis.patternsearch.service.*;
+import gabriel.patternsearch.service.*;
 
 public class PatternSearchMapClient<K extends Comparable<? super K>, V>
 {
@@ -168,13 +166,13 @@ An application obtains an instance of the client class using an object of type
 injector class, where the inject class that implements the injector interface. 
 
 
-The ![injector interface](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/optravis/patternsearch/injector/PatternSearchMapInjector.java) defines the method _getClient()_ that needs to be implemented by any injector class:
+The ![injector interface](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/gabriel/patternsearch/injector/PatternSearchMapInjector.java) defines the method _getClient()_ that needs to be implemented by any injector class:
 
 ```
-package optravis.patternsearch.injector;
+package gabriel.patternsearch.injector;
 
 import java.util.Map;
-import optravis.patternsearch.client.PatternSearchMapClient;
+import gabriel.patternsearch.client.PatternSearchMapClient;
 
 public interface PatternSearchMapInjector<K extends Comparable<? super K>, V> 
 {
@@ -183,14 +181,14 @@ public interface PatternSearchMapInjector<K extends Comparable<? super K>, V>
 ```
 
 
-I defined an ![injector class](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/optravis/patternsearch/injector/PatternSearchMapInjectorJavaDB.java) that implements the method _getClient()_ in terms of the class PatternSearchMapServiceJavaDB<K,V> (which implements the service interface PatternSearchMapService<K,V>):
+I defined an ![injector class](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/gabriel/patternsearch/injector/PatternSearchMapInjectorJavaDB.java) that implements the method _getClient()_ in terms of the class PatternSearchMapServiceJavaDB<K,V> (which implements the service interface PatternSearchMapService<K,V>):
 
 ```
-package optravis.patternsearch.injector;
+package gabriel.patternsearch.injector;
 
 import java.util.Map;
-import optravis.patternsearch.service.*;
-import optravis.patternsearch.client.PatternSearchMapClient;
+import gabriel.patternsearch.service.*;
+import gabriel.patternsearch.client.PatternSearchMapClient;
 
 public class PatternSearchMapInjectorJavaDB<K extends Comparable<? super K>, V> 
     implements PatternSearchMapInjector<K,V>
@@ -211,14 +209,14 @@ public class PatternSearchMapInjectorJavaDB<K extends Comparable<? super K>, V>
 ### Generating the data items
 
 
-The map of 1000000 data items is generated by the class ![package optravis.patternsearch.dao.DataItemsDAO](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/optravis/patternsearch/dao/DataItemsDAO.java) using the _getDataItems()_ static method:
+The map of 1000000 data items is generated by the class ![package gabriel.patternsearch.dao.DataItemsDAO](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/gabriel/patternsearch/dao/DataItemsDAO.java) using the _getDataItems()_ static method:
 
 
 ```
-package optravis.patternsearch.dao;
+package gabriel.patternsearch.dao;
 
 import java.util.*;
-import optravis.patternsearch.dao.DataItem;
+import gabriel.patternsearch.dao.DataItem;
 
 /**
  * Class that generates a map of numberOfItems data items, with the map key 
@@ -285,16 +283,16 @@ public final class DataItemsDAO {
 Once we have defined the interfaces and classes described above, the application that performs the pattern search on the java objects will be easy to write. 
 
 
-The class ![optravis.patternsearch.PatternSearch](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/optravis/patternsearch/PatternSearch.java) does the work in the _main()_ method:
+The class ![gabriel.patternsearch.PatternSearch](https://github.com/gmateesc/maven-projects/blob/master/PatternSearchJava/src/gabriel/patternsearch/PatternSearch.java) does the work in the _main()_ method:
 
 ```
-package optravis.patternsearch;
+package gabriel.patternsearch;
 
 import java.util.*;
 
-import optravis.patternsearch.injector.*;
-import optravis.patternsearch.client.*;
-import optravis.patternsearch.dao.*;
+import gabriel.patternsearch.injector.*;
+import gabriel.patternsearch.client.*;
+import gabriel.patternsearch.dao.*;
 
 
 public class PatternSearch {

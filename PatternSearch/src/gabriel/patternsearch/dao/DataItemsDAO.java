@@ -1,8 +1,8 @@
-package optravis.patternsearch.dao;
+package gabriel.patternsearch.dao;
 
 import java.util.*;
 
-import optravis.patternsearch.dao.DataItem;
+import gabriel.patternsearch.dao.DataItem;
 
 /**
  * Class that generates a map of numberOfItems data items, with the map key 

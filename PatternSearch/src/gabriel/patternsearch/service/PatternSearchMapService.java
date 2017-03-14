@@ -1,4 +1,4 @@
-package optravis.patternsearch.service;
+package gabriel.patternsearch.service;
 
 import java.util.Collection;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package optravis.patternsearch;
+package gabriel.patternsearch;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-import optravis.patternsearch.injector.*;
-import optravis.patternsearch.client.*;
-import optravis.patternsearch.dao.*;
+import gabriel.patternsearch.injector.*;
+import gabriel.patternsearch.client.*;
+import gabriel.patternsearch.dao.*;
 
 
 public class PatternSearch {
@@ -41,7 +41,7 @@ public class PatternSearch {
 	//
 
 	// Method 1: using
-	//    import optravis.patternsearch.service.*;
+	//    import gabriel.patternsearch.service.*;
 	// Not very good, because exposes the methods to the service 
 	// which may change, requiring changes in all app using the service
 	//
@@ -50,7 +50,7 @@ public class PatternSearch {
 
 
 	// Method 2: using
-	//    import optravis.patternsearch.injector.*;
+	//    import gabriel.patternsearch.injector.*;
 	// Good, because encapsulated the methods of the service in 
 	// the injector; a change in servicere quires changomg the injector but not
 	// any app using the service

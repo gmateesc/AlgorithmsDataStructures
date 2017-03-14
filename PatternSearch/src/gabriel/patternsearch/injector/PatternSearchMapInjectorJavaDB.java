@@ -1,9 +1,9 @@
-package optravis.patternsearch.injector;
+package gabriel.patternsearch.injector;
 
 import java.util.Map;
 
-import optravis.patternsearch.service.*;
-import optravis.patternsearch.client.PatternSearchMapClient;
+import gabriel.patternsearch.service.*;
+import gabriel.patternsearch.client.PatternSearchMapClient;
 
 
 public class PatternSearchMapInjectorJavaDB<K extends Comparable<? super K>, V> 

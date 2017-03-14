@@ -1,7 +1,7 @@
-package optravis.patternsearch.client;
+package gabriel.patternsearch.client;
 
 import java.util.Collection;
-import optravis.patternsearch.service.*;
+import gabriel.patternsearch.service.*;
 
 public class PatternSearchMapClient<K extends Comparable<? super K>, V>
 {

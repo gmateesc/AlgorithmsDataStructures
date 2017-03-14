@@ -1,4 +1,4 @@
-package optravis.patternsearch.dao;
+package gabriel.patternsearch.dao;
 
 import java.util.List;
 

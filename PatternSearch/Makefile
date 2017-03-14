@@ -1,6 +1,6 @@
 
 builddir = ../classes
-project = optravis/patternsearch
+project = gabriel/patternsearch
 
 app  := PatternSearch
 lib  := lib/derby-10.11.1.1.jar
@@ -8,7 +8,7 @@ lib  := lib/derby-10.11.1.1.jar
 all:
 
 	@echo " "
-	@echo "Making optravis/patternsearch code"
+	@echo "Making gabriel/patternsearch code"
 	mkdir -p classes
 	cd src && javac  -d ${builddir} -Xlint:unchecked  ${project}/service/*.java
 	cd src && javac  -d ${builddir} -Xlint:unchecked  ${project}/client/*.java

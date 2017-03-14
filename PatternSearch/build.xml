@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project name="Optravis" default="main" basedir=".">
+<project name="PatternSearch" default="main" basedir=".">
 
 <!-- 
-   the above attr name="Optravis" implies
+   the above attr name="PatternSearch" implies
 
-    ${ant.project.name} => Optravis
+    ${ant.project.name} => PatternSearch
 -->
 
 <!-- 
@@ -28,7 +28,7 @@ in which case, here I need to define this property:
 
 <property name="build.compiler" value="modern"/>
 
-<property name="package.name"   value="optravis.patternsearch"/>
+<property name="package.name"   value="gabriel.patternsearch"/>
 <property name="src.dir"        value="src"/>
 <property name="build.dir"      value="./"/>
 <property name="classes.dir"    value="${build.dir}/classes"/>
