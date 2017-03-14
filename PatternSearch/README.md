@@ -382,11 +382,11 @@ Below is a sample run of the application:
 ```
   $ ant
 
-  Buildfile: /Users/gabriel/GitHub/maven-projects/PatternSearchJava/build.xml
+  Buildfile: /Users/gabriel/GitHub/AlgorithmsDataStructures/PatternSearch/build.xml
 
   compile:
-    [mkdir] Created dir: /Users/gabriel/GitHub/maven-projects/PatternSearchJava/classes
-    [javac] Compiling 8 source files to /Users/gabriel/GitHub/maven-projects/PatternSearchJava/classes
+    [mkdir] Created dir: /Users/gabriel/GitHub/AlgorithmsDataStructures/PatternSearch/classes
+    [javac] Compiling 8 source files to /Users/gabriel/GitHub/AlgorithmsDataStructures/PatternSearch/classes
 
   main:
      [java] Number of items: 1000000
