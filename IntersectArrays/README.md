@@ -639,11 +639,11 @@ set the random.range system property, e.g.,
 The next two images show the time to do the intersection when the big array, respectively the small array, 
 is put in hash
 
-<img src="https://github.com/gmateesc/maven-projects/blob/master/IntersectArrays/images/put_array_big_in_hash.png" alt="blob" width="400">
+<img src="https://github.com/gmateesc/AlgorithmsDataStructures/tree/master/IntersectArrays/images/put_array_big_in_hash.png" alt="blob" width="400">
 
 versus:
 
-<img src="https://github.com/gmateesc/maven-projects/blob/master/IntersectArrays/images/put_array_small_in_hash.png" alt="blob" width="400">
+<img src="https://github.com/gmateesc/AlgorithmsDataStructures/tree/master/IntersectArrays/images/put_array_small_in_hash.png" alt="blob" width="400">
 
 
 Doing more runs, confirmes this pattern, which is explained next.
