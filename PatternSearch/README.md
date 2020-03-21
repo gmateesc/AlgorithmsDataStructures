@@ -21,24 +21,29 @@
 ## The Problem Solved 
 
 Consider the following problem: the input is a map of 1000000 data items. Each item has three fields: a name of type String, a unique ID (uid) field of type String, and a keywords field of type List<String>. 
-The problem is to write a Java program that searches for a given string search_string in the keywords of all data items, where the search is case insensitive and search_string, matches sub-string of the strings in keywords, and return a collection of uids of data items that match the search string. 
+
+The problem is to write a Java program that searches for a given string *search_string* in the keywords of all data items, where the search is case insensitive and *search_string* matches sub-string of the strings in keywords, and return a collection of uids of the data items that match the search string. 
 
 The solution must meet the following requirements:
-* Search must be case insensitive and include partial matches (the search_string can be a sub-string of a keyword in the list of keywords)
-* The result must not contain duplicate uids
-* The search time should be as small as possible and be reported by the program
+
+* Search must be case insensitive and include partial matches (the *search_string* can be a sub-string of a keyword in the list of keywords);
+
+* The result must not contain duplicate uids;
+
+* The search time should be as small as possible and be reported by the program.
 
 
 
 <a name="p2" id="p2"> </a>
 ## Description of the solution
 
-The problem is essentuially to peform a pattern search in a Java map Map<K, V>, 
-where V is a java type that has a String field. agains which the pattern 
-match is performed. Return the Map entries matching the search. 
+The problem is essentially to peform a pattern search in a Java map Map<K, V>, 
+where V is a java type that has a String field against which the pattern 
+match is performed, and return the Map entries matching the search. 
 
-To make the pattern search fast, I chose to implement it using JDBC against 
-an in-memory table in which I loaded the data items.
+To make the pattern search fast, I chose to implement it using an 
+in-memory table in which I loaded the data items and access with JDBC.
+
 
 
 The solution uses two main software design techniques:
@@ -78,6 +83,7 @@ Then I created an [implementation](https://github.com/gmateesc/AlgorithmsDataStr
 ```
 gabriel.patternsearch.service.PatternSearchMapServiceJavaDB<K.V>
 ``` 
+
 This class implements the searchForPattern() method by loading the Map entries into a relational 
 table of an embeeded Derby Database and using JDBC to peform pattern search against the table:
 
@@ -111,7 +117,7 @@ public class
 ### Decoupling the application from the service implementation 
 
 I used the dependency injection pattern to allow applications to use other 
-implementations of the pattern search servuce than the class 
+implementations of the pattern search service than the class 
 _PatternSearchMapServiceJavaDB<K,V>_ that I provided.
 
 
@@ -281,7 +287,8 @@ public final class DataItemsDAO {
 ### Putting it all together: the PatternSearch application
 
 
-Once we have defined the interfaces and classes described above, the application that performs the pattern search on the java objects will be easy to write. 
+Once the interfaces and classes described above have been defined, the application 
+that performs the pattern search on the java objects will be easy to write. 
 
 
 The class ![gabriel.patternsearch.PatternSearch](https://github.com/gmateesc/AlgorithmsDataStructures/blob/master/PatternSearch/src/gabriel/patternsearch/PatternSearch.java) does the work in the _main()_ method:
