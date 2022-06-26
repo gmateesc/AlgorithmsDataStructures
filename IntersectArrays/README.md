@@ -1,5 +1,5 @@
 
-# Application to intersect two arrays
+# Java Application to Intersect two Arrays
 
 
 ## Table of Contents
